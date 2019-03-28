@@ -1,6 +1,6 @@
 *
 *     calc_statistics:
-*     calculation of statistics for Brunner-Munzel permutation test
+*     calculation of statistics for permuted Brunner-Munzel test
 *
 *     (input)
 *     nx, ny: length of x or y groups
@@ -51,11 +51,6 @@
       enddo
 
       v = const(3) * vx + const(4) * vy
-      ! to avoid division by zero
-      if (v.lt.0.000001) then
-         v = 0.00001
-      endif
-
       stat = (my - mx) / sqrt(v)
       return
       end
