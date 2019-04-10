@@ -1,8 +1,8 @@
 Package: brunnermunzel
 Type: Package
 Title: (Permuted) Brunner-Munzel Test
-Version: 1.3.2
-Date: 2019-03-28
+Version: 1.3.3
+Date: 2019-04-10
 Authors@R: person("Toshiaki", "Ara", email = "toshiaki.ara@gmail.com",
   role = c("aut", "cre"))
 License: GPL-2 | GPL-3
@@ -19,8 +19,8 @@ RoxygenNote: 6.1.1
 Suggests: testthat, knitr, rmarkdown, dplyr, ggplot2
 VignetteBuilder: knitr, dplyr, ggplot2
 NeedsCompilation: yes
-Packaged: 2019-03-28 13:34:31 UTC; ara
+Packaged: 2019-04-10 10:51:37 UTC; ara
 Author: Toshiaki Ara [aut, cre]
 Maintainer: Toshiaki Ara <toshiaki.ara@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-03-28 13:50:02 UTC
+Date/Publication: 2019-04-10 11:15:20 UTC
