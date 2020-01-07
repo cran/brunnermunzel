@@ -10,10 +10,17 @@
 \usage{
 brunnermunzel.test(x, ...)
 
-\method{brunnermunzel.test}{default}(x, y, alternative = c("two.sided",
-  "greater", "less"), alpha = 0.05, perm = FALSE, ...)
+\method{brunnermunzel.test}{default}(
+  x,
+  y,
+  alternative = c("two.sided", "greater", "less"),
+  alpha = 0.05,
+  perm = FALSE,
+  est = c("original", "difference"),
+  ...
+)
 
-\method{brunnermunzel.test}{formula}(formula, data, subset, na.action, ...)
+\method{brunnermunzel.test}{formula}(formula, data, subset = NULL, na.action, ...)
 
 \method{brunnermunzel.test}{matrix}(x, ...)
 
@@ -31,8 +38,8 @@ brunnermunzel.test(x, ...)
 If x is matrix or table, y must be missing.}
 
 \item{alternative}{a character string specifying the alternative
-hypothesis, must be one of \code{"two.sided"} (default), \code{"greater"} or
-\code{"less"}. User can specify just the initial letter.}
+hypothesis, must be one of \code{two.sided} (default), \code{greater} or
+\code{less}. User can specify just the initial letter.}
 
 \item{alpha}{significance level, default is 0.05 for 95\% confidence
 interval.}
@@ -42,6 +49,15 @@ interval.}
  \item{FALSE}{(default): perform Brunner-Munzel test.}
  \item{TRUE}{: perform permuted Brunner-Munzel test.}
 }}
+
+\item{est}{a method to calculate estimate and confidence interval,
+must be either \code{original} (default) or \code{difference}.
+   \describe{
+     \item{original}{(default): return \eqn{p = P(X < Y) + 0.5 * P(X = Y)}}
+     \item{difference}{: return mean difference.
+           i.e. \eqn{P(X < Y) - P(X > Y) = 2 * p - 1}}
+   }
+This change is proposed by Dr. Julian D. Karch.}
 
 \item{formula}{a formula of the form \code{lhs ~ rhs} where \code{lhs}
 is a numeric variable giving the data values and \code{rhs} a factor
@@ -61,13 +77,12 @@ the data contain \code{NA}s.  Defaults to
 }
 \value{
 A list containing the following components:
+ \item{data.name}{a character string giving the name of the data.}
  \item{statistic}{the Brunner--Munzel test statistic.}
  \item{parameter}{the degrees of freedom.}
- \item{conf.int}{the confidence interval.}
  \item{p.value}{the \eqn{p}-value of the test.}
- \item{data.name}{a character string giving the name of the data.}
- \item{estimate}{an estimate of the effect size,
-       i.e., \eqn{P(X < Y) + 0.5 * P(X = Y)}}
+ \item{conf.int}{the confidence interval.}
+ \item{estimate}{an estimate of the effect size}
 }
 \description{
 This function performs the Brunner--Munzel test for stochastic
@@ -92,8 +107,9 @@ x <- c(1.83,  0.50,  1.62,  2.48, 1.68, 1.88, 1.55, 3.06, 1.30)
 y <- c(0.878, 0.647, 0.598, 2.05, 1.06, 1.29, 1.06, 3.14, 1.29)
 
 brunnermunzel.test(x, y)
-
+##
 ##       Brunner-Munzel Test
+##
 ## data:  x and y
 ## Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value = 0.1628
 ## 95 percent confidence interval:
@@ -101,6 +117,20 @@ brunnermunzel.test(x, y)
 ## sample estimates:
 ## P(X<Y)+.5*P(X=Y)
 ##        0.2839506
+
+## 'est' option
+## if 'est = "difference"' return P(X<Y) - P(X>Y)
+brunnermunzel.test(x, y, est = "difference")
+##
+##       Brunner-Munzel Test
+##
+## data:  x and y
+## Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value = 0.1628
+## 95 percent confidence interval:
+##  -1.0592588  0.1950613
+## sample estimates:
+## P(X<Y)-P(X>Y)
+##    -0.4320988
 
 
 ## Formula interface.
@@ -111,7 +141,7 @@ dat <- data.frame(
 )
 
 brunnermunzel.test(value ~ group, data = dat)
-
+##
 ##       Brunner-Munzel Test
 ##
 ## data:  value by group
@@ -131,8 +161,9 @@ Y <- c(1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 4, 1, 1)
 N <- c(3, 3, 4, 3, 1, 2, 3, 1, 1, 5, 4)
 
 brunnermunzel.test(Y, N)
-
+##
 ##       Brunner-Munzel Test
+##
 ## data: Y and N
 ## Brunner-Munzel Test Statistic = 3.1375,  df = 17.683, p-value = 0.005786
 ## 95 percent confidence interval:
@@ -149,7 +180,7 @@ dat <- data.frame(
 )
 
 brunnermunzel.test(value ~ group, data = dat)
-
+##
 ##       Brunner-Munzel Test
 ##
 ## data:  value by group
@@ -168,8 +199,9 @@ dat1 <- matrix(c(4, 4, 2, 1, 5, 4), nr = 2, byrow = TRUE)
 dat2 <- as.table(dat1)
 
 brunnermunzel.test(dat1)  # matrix
-
+##
 ##       Brunner-Munzel Test
+##
 ## data:  Group1 and Group2
 ## Brunner-Munzel Test Statistic = 1.5511, df = 16.961, p-value =
 ## 0.1393
@@ -180,8 +212,9 @@ brunnermunzel.test(dat1)  # matrix
 ##             0.68
 
 brunnermunzel.test(dat2)  # table
-
+##
 ##       Brunner-Munzel Test
+##
 ## data:  A and B
 ## Brunner-Munzel Test Statistic = 1.5511, df = 16.961, p-value =
 ## 0.1393

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Toshiaki Ara" />
 
-<meta name="date" content="2019-05-31" />
+<meta name="date" content="2020-01-07" />
 
 <title>Usage of brunnermunzel package</title>
 
@@ -96,7 +96,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -303,7 +303,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Usage of <code>brunnermunzel</code> package</h1>
 <h4 class="author">Toshiaki Ara</h4>
-<h4 class="date">2019-05-31</h4>
+<h4 class="date">2020-01-07</h4>
 
 
 
@@ -336,134 +336,159 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; 1 x      1.77   1.68</span></a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; 2 y      1.33   1.06</span></a></code></pre></div>
-<pre><code>#&gt; Registered S3 methods overwritten by &#39;ggplot2&#39;:
-#&gt;   method         from 
-#&gt;   [.quosures     rlang
-#&gt;   c.quosures     rlang
-#&gt;   print.quosures rlang</code></pre>
-<p><img src="data:image/png;base64,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" width="50%" /></p>
+<p><img src="data:image/png;base64,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" width="50%" /></p>
 </div>
 <div id="analysis" class="section level3">
 <h3>Analysis</h3>
 <div id="analysis-with-brunner-munzel-test" class="section level4">
 <h4>analysis with Brunner-Munzel test</h4>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">library</span>(brunnermunzel)</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw">brunnermunzel.test</span>(x, y)</a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; data:  x and y</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value =</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; 0.1628</span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt;  -0.02962941  0.59753064</span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; sample estimates:</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt;        0.2839506</span></a>
-<a class="sourceLine" id="cb5-15" title="15"></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="kw">brunnermunzel.test</span>(value <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> dat)</a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; data:  value by group</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value =</span></a>
-<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 0.1628</span></a>
-<a class="sourceLine" id="cb5-23" title="23"><span class="co">#&gt; 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb5-24" title="24"><span class="co">#&gt;  -0.02962941  0.59753064</span></a>
-<a class="sourceLine" id="cb5-25" title="25"><span class="co">#&gt; sample estimates:</span></a>
-<a class="sourceLine" id="cb5-26" title="26"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
-<a class="sourceLine" id="cb5-27" title="27"><span class="co">#&gt;        0.2839506</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(brunnermunzel)</a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw">brunnermunzel.test</span>(x, y)</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value = 0.1628</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  -0.02962941  0.59753064</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;        0.2839506</span></a>
+<a class="sourceLine" id="cb4-14" title="14"></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="kw">brunnermunzel.test</span>(value <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> dat)</a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt; data:  value by group</span></a>
+<a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt; Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value = 0.1628</span></a>
+<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt;  -0.02962941  0.59753064</span></a>
+<a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb4-24" title="24"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb4-25" title="25"><span class="co">#&gt;        0.2839506</span></a></code></pre></div>
 </div>
 <div id="analysis-with-permuted-brunner-munzel-test" class="section level4">
 <h4>analysis with permuted Brunner-Munzel test</h4>
 <p>To perform permuted Brunner-Munzel test, use <code>brunnermunzel.test</code> with “<code>perm = TRUE</code>” option, or <code>brunnermunzel.permutation.test</code> function. This “<code>perm</code>” option is used in also formula interface, matrix, and table.</p>
 <p>When <code>perm</code> is <code>TRUE</code>, <code>brunnermunzel.test</code> calls <code>brunnermunzel.permutation.test</code> in internal.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">brunnermunzel.test</span>(x, y, <span class="dt">perm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; data:  x and y</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; p-value = 0.158</span></a>
-<a class="sourceLine" id="cb6-7" title="7"></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="kw">brunnermunzel.permutation.test</span>(x, y)</a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; data:  x and y</span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; p-value = 0.158</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">brunnermunzel.test</span>(x, y, <span class="dt">perm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; p-value = 0.158</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;        0.2839506</span></a>
+<a class="sourceLine" id="cb5-10" title="10"></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="kw">brunnermunzel.permutation.test</span>(x, y)</a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; p-value = 0.158</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt;        0.2839506</span></a></code></pre></div>
 <p>Because statistics in all combinations are calculated in permuted Brunner-Munzel test (<span class="math inline">\({}_{n_{x}+n_{y}}C_{n_{x}}\)</span> where <span class="math inline">\(n_{x}\)</span> and <span class="math inline">\(n_{y}\)</span> are sample size of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, respectively), it takes a long time to obtain results.</p>
 <p>Therefore, when sample size is too large [the number of combination is more than 40116600 (<span class="math inline">\(=\)</span> <code>choose(28, 14)</code>)], it switches to Brunner-Munzel test automatically.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># sample size is 30</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">brunnermunzel.permutation.test</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">17</span>)</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; Warning in brunnermunzel.permutation.test.default(1:15, 3:17): Sample number is too large. Using &#39;brunnermunzel.test&#39;</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; data:  x and y</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt; Brunner-Munzel Test Statistic = 1.1973, df = 28, p-value = 0.2412</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt; 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  0.4115330 0.8373559</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; sample estimates:</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;        0.6244444</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># sample size is 30</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">brunnermunzel.permutation.test</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">17</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; Warning in brunnermunzel.permutation.test.default(1:15, 3:17): Sample number is too large. Using &#39;brunnermunzel.test&#39;</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; Brunner-Munzel Test Statistic = 1.1973, df = 28, p-value = 0.2412</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;  0.4115330 0.8373559</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt;        0.6244444</span></a></code></pre></div>
 </div>
 <div id="using-force-option" class="section level4">
 <h4>using <code>force</code> option</h4>
 <p>When you want to perform permuted Brunner-Munzel test regardless sample size, you add “<code>force = TRUE</code>” option to <code>brunnermunzel.permutation test</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">brunnermunzel.permutation.test</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">17</span>, <span class="dt">force =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt; data:  1:15 and 3:17</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt; p-value = 0.2341</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">brunnermunzel.permutation.test</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">17</span>, <span class="dt">force =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; data:  1:15 and 3:17</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; p-value = 0.2341</span></a></code></pre></div>
 </div>
 <div id="using-alternative-option" class="section level4">
 <h4>using <code>alternative</code> option</h4>
 <p><code>brunnermunzel.test</code> also can use “<code>alternative</code>” option as well as <code>t.test</code> and <code>wilcox.test</code> functions.</p>
 <p>To test whether the average rank of group <span class="math inline">\(x\)</span> is greater than that of group <span class="math inline">\(y\)</span>, <code>alternative = &quot;greater&quot;</code> option is added. In contrast, to test whether the average rank of group <span class="math inline">\(x\)</span> is lesser than that of group <span class="math inline">\(y\)</span>, <code>alternative = &quot;less&quot;</code> option is added.</p>
 <p>The results of Brunner-Munzel test and Wilcoxon sum-rank test (Mann-Whitney test) with <code>alternative = &quot;greater&quot;</code> option are shown. In this case, median of <span class="math inline">\(x\)</span> is 1.68, and median of <span class="math inline">\(y\)</span> is 1.06.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">brunnermunzel.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="co">#&gt; data:  x and y</span></a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="co">#&gt; Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value =</span></a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="co">#&gt; 0.08138</span></a>
-<a class="sourceLine" id="cb9-8" title="8"><span class="co">#&gt; 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="co">#&gt;  -0.02962941  0.59753064</span></a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="co">#&gt; sample estimates:</span></a>
-<a class="sourceLine" id="cb9-11" title="11"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="co">#&gt;        0.2839506</span></a>
-<a class="sourceLine" id="cb9-13" title="13"></a>
-<a class="sourceLine" id="cb9-14" title="14"><span class="kw">wilcox.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a>
-<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt; Warning in wilcox.test.default(x, y, alternative = &quot;greater&quot;): cannot</span></a>
-<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt; compute exact p-value with ties</span></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-18" title="18"><span class="co">#&gt;  Wilcoxon rank sum test with continuity correction</span></a>
-<a class="sourceLine" id="cb9-19" title="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-20" title="20"><span class="co">#&gt; data:  x and y</span></a>
-<a class="sourceLine" id="cb9-21" title="21"><span class="co">#&gt; W = 58, p-value = 0.06646</span></a>
-<a class="sourceLine" id="cb9-22" title="22"><span class="co">#&gt; alternative hypothesis: true location shift is greater than 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">brunnermunzel.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt; Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value = 0.08138</span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt;  -0.02962941  0.59753064</span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt;        0.2839506</span></a>
+<a class="sourceLine" id="cb8-12" title="12"></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="kw">wilcox.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt; Warning in wilcox.test.default(x, y, alternative = &quot;greater&quot;): cannot compute</span></a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt; exact p-value with ties</span></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt;  Wilcoxon rank sum test with continuity correction</span></a>
+<a class="sourceLine" id="cb8-18" title="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-19" title="19"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb8-20" title="20"><span class="co">#&gt; W = 58, p-value = 0.06646</span></a>
+<a class="sourceLine" id="cb8-21" title="21"><span class="co">#&gt; alternative hypothesis: true location shift is greater than 0</span></a></code></pre></div>
 <p>When using formula, <code>brunnermunzel.test</code> with <code>alternative = &quot;greater&quot;</code> option tests an alternative hypothesis “1st level is greater than 2nd level”.</p>
 <p>In contrast, <code>brunnermunzel.test</code> with <code>alternative = &quot;less&quot;</code> option tests an alternative hypothesis “1st level is lesser than 2nd level”.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">dat<span class="op">$</span>group</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&gt;  [1] x x x x x x x x x y y y y y y y y y</span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="co">#&gt; Levels: x y</span></a></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">brunnermunzel.test</span>(value <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> dat, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)<span class="op">$</span>p.value</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="co">#&gt; [1] 0.08137809</span></a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">dat<span class="op">$</span>group</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="co">#&gt;  [1] x x x x x x x x x y y y y y y y y y</span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="co">#&gt; Levels: x y</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">brunnermunzel.test</span>(value <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> dat, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)<span class="op">$</span>p.value</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&gt; [1] 0.08137809</span></a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="kw">wilcox.test</span>(value <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> dat, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)<span class="op">$</span>p.value</a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="co">#&gt; Warning in wilcox.test.default(x = c(1.83, 0.5, 1.62, 2.48, 1.68, 1.88, : cannot</span></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="co">#&gt; compute exact p-value with ties</span></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="co">#&gt; [1] 0.06645973</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">brunnermunzel.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)<span class="op">$</span>p.value</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="co">#&gt; [1] 0.9186219</span></a>
 <a class="sourceLine" id="cb11-3" title="3"></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="kw">wilcox.test</span>(value <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> dat, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)<span class="op">$</span>p.value</a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="co">#&gt; Warning in wilcox.test.default(x = c(1.83, 0.5, 1.62, 2.48, 1.68, 1.88, :</span></a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="co">#&gt; cannot compute exact p-value with ties</span></a>
-<a class="sourceLine" id="cb11-7" title="7"><span class="co">#&gt; [1] 0.06645973</span></a></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">brunnermunzel.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)<span class="op">$</span>p.value</a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="co">#&gt; [1] 0.9186219</span></a>
-<a class="sourceLine" id="cb12-3" title="3"></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="kw">wilcox.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)<span class="op">$</span>p.value</a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="co">#&gt; Warning in wilcox.test.default(x, y, alternative = &quot;less&quot;): cannot compute</span></a>
-<a class="sourceLine" id="cb12-6" title="6"><span class="co">#&gt; exact p-value with ties</span></a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="co">#&gt; [1] 0.9442044</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-4" title="4"><span class="kw">wilcox.test</span>(x, y, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)<span class="op">$</span>p.value</a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="co">#&gt; Warning in wilcox.test.default(x, y, alternative = &quot;less&quot;): cannot compute exact</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="co">#&gt; p-value with ties</span></a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="co">#&gt; [1] 0.9442044</span></a></code></pre></div>
+</div>
+<div id="using-est-option" class="section level4">
+<h4>using <code>est</code> option</h4>
+<p>Normally, <code>brunnermunzel.test</code> and <code>brunnermunzel.permutation test</code> return the estimate <span class="math inline">\(P(X&lt;Y) + 0.5 \times P(X=Y)\)</span>. When ‘<code>est = &quot;difference&quot;</code>’ option is used, these functions return mean difference [<span class="math inline">\(P(X&lt;Y) - P(X&gt;Y)\)</span>] in estimate and confidence interval.</p>
+<p>Note that <span class="math inline">\(P(X&lt;Y) - P(X&gt;Y) = 2p - 1\)</span> when <span class="math inline">\(p = P(X&lt;Y) + 0.5 \times P(X=Y)\)</span>.</p>
+<p>This change is proposed by Dr. Julian D. Karch.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">brunnermunzel.test</span>(x, y, <span class="dt">est =</span> <span class="st">&quot;difference&quot;</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="co">#&gt; Brunner-Munzel Test Statistic = -1.4673, df = 15.147, p-value = 0.1628</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="co">#&gt;  -1.0592588  0.1950613</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="co">#&gt; P(X&lt;Y)-P(X&gt;Y) </span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="co">#&gt;    -0.4320988</span></a>
+<a class="sourceLine" id="cb12-12" title="12"></a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="kw">brunnermunzel.permutation.test</span>(x, y, <span class="dt">est =</span> <span class="st">&quot;difference&quot;</span>)</a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-15" title="15"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb12-16" title="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-17" title="17"><span class="co">#&gt; data:  x and y</span></a>
+<a class="sourceLine" id="cb12-18" title="18"><span class="co">#&gt; p-value = 0.158</span></a>
+<a class="sourceLine" id="cb12-19" title="19"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb12-20" title="20"><span class="co">#&gt; P(X&lt;Y)-P(X&gt;Y) </span></a>
+<a class="sourceLine" id="cb12-21" title="21"><span class="co">#&gt;    -0.4320988</span></a></code></pre></div>
 </div>
 </div>
 </div>
@@ -519,26 +544,24 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb15-3" title="3"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
 <a class="sourceLine" id="cb15-4" title="4"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb15-5" title="5"><span class="co">#&gt; data:  Group1 and Group2</span></a>
-<a class="sourceLine" id="cb15-6" title="6"><span class="co">#&gt; Brunner-Munzel Test Statistic = 2.4447, df = 17.394, p-value =</span></a>
-<a class="sourceLine" id="cb15-7" title="7"><span class="co">#&gt; 0.02542</span></a>
-<a class="sourceLine" id="cb15-8" title="8"><span class="co">#&gt; 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb15-9" title="9"><span class="co">#&gt;  0.5359999 0.9840001</span></a>
-<a class="sourceLine" id="cb15-10" title="10"><span class="co">#&gt; sample estimates:</span></a>
-<a class="sourceLine" id="cb15-11" title="11"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
-<a class="sourceLine" id="cb15-12" title="12"><span class="co">#&gt;             0.76</span></a>
-<a class="sourceLine" id="cb15-13" title="13"></a>
-<a class="sourceLine" id="cb15-14" title="14"><span class="kw">brunnermunzel.test</span>(dat2)</a>
-<a class="sourceLine" id="cb15-15" title="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb15-16" title="16"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb15-17" title="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb15-18" title="18"><span class="co">#&gt; data:  A and B</span></a>
-<a class="sourceLine" id="cb15-19" title="19"><span class="co">#&gt; Brunner-Munzel Test Statistic = 2.4447, df = 17.394, p-value =</span></a>
-<a class="sourceLine" id="cb15-20" title="20"><span class="co">#&gt; 0.02542</span></a>
-<a class="sourceLine" id="cb15-21" title="21"><span class="co">#&gt; 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb15-22" title="22"><span class="co">#&gt;  0.5359999 0.9840001</span></a>
-<a class="sourceLine" id="cb15-23" title="23"><span class="co">#&gt; sample estimates:</span></a>
-<a class="sourceLine" id="cb15-24" title="24"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
-<a class="sourceLine" id="cb15-25" title="25"><span class="co">#&gt;             0.76</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-6" title="6"><span class="co">#&gt; Brunner-Munzel Test Statistic = 2.4447, df = 17.394, p-value = 0.02542</span></a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb15-8" title="8"><span class="co">#&gt;  0.5359999 0.9840001</span></a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb15-10" title="10"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb15-11" title="11"><span class="co">#&gt;             0.76</span></a>
+<a class="sourceLine" id="cb15-12" title="12"></a>
+<a class="sourceLine" id="cb15-13" title="13"><span class="kw">brunnermunzel.test</span>(dat2)</a>
+<a class="sourceLine" id="cb15-14" title="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-15" title="15"><span class="co">#&gt;  Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb15-16" title="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-17" title="17"><span class="co">#&gt; data:  A and B</span></a>
+<a class="sourceLine" id="cb15-18" title="18"><span class="co">#&gt; Brunner-Munzel Test Statistic = 2.4447, df = 17.394, p-value = 0.02542</span></a>
+<a class="sourceLine" id="cb15-19" title="19"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb15-20" title="20"><span class="co">#&gt;  0.5359999 0.9840001</span></a>
+<a class="sourceLine" id="cb15-21" title="21"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb15-22" title="22"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb15-23" title="23"><span class="co">#&gt;             0.76</span></a></code></pre></div>
 </div>
 <div id="analysis-with-permuted-brunner-munzel-test-1" class="section level4">
 <h4>analysis with permuted Brunner-Munzel test</h4>
@@ -548,13 +571,19 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb16-4" title="4"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb16-5" title="5"><span class="co">#&gt; data:  Group1 and Group2</span></a>
 <a class="sourceLine" id="cb16-6" title="6"><span class="co">#&gt; p-value = 0.05116</span></a>
-<a class="sourceLine" id="cb16-7" title="7"></a>
-<a class="sourceLine" id="cb16-8" title="8"><span class="kw">brunnermunzel.permutation.test</span>(dat2)</a>
-<a class="sourceLine" id="cb16-9" title="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb16-10" title="10"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
-<a class="sourceLine" id="cb16-11" title="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb16-12" title="12"><span class="co">#&gt; data:  A and B</span></a>
-<a class="sourceLine" id="cb16-13" title="13"><span class="co">#&gt; p-value = 0.05116</span></a></code></pre></div>
+<a class="sourceLine" id="cb16-7" title="7"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb16-8" title="8"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb16-9" title="9"><span class="co">#&gt;             0.76</span></a>
+<a class="sourceLine" id="cb16-10" title="10"></a>
+<a class="sourceLine" id="cb16-11" title="11"><span class="kw">brunnermunzel.permutation.test</span>(dat2)</a>
+<a class="sourceLine" id="cb16-12" title="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb16-13" title="13"><span class="co">#&gt;  permuted Brunner-Munzel Test</span></a>
+<a class="sourceLine" id="cb16-14" title="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb16-15" title="15"><span class="co">#&gt; data:  A and B</span></a>
+<a class="sourceLine" id="cb16-16" title="16"><span class="co">#&gt; p-value = 0.05116</span></a>
+<a class="sourceLine" id="cb16-17" title="17"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb16-18" title="18"><span class="co">#&gt; P(X&lt;Y)+.5*P(X=Y) </span></a>
+<a class="sourceLine" id="cb16-19" title="19"><span class="co">#&gt;             0.76</span></a></code></pre></div>
 </div>
 </div>
 </div>
@@ -583,6 +612,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
