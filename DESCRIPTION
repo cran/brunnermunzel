@@ -1,8 +1,8 @@
 Package: brunnermunzel
 Type: Package
 Title: (Permuted) Brunner-Munzel Test
-Version: 1.4.1
-Date: 2019-12-22
+Version: 2.0
+Date: 2022-8-7
 Authors@R: person("Toshiaki", "Ara", email = "toshiaki.ara@gmail.com",
   role = c("aut", "cre"))
 License: GPL-2 | GPL-3
@@ -15,12 +15,12 @@ Description: Provides the functions for Brunner-Munzel test and
     and are written with FORTRAN.
 URL: https://github.com/toshi-ara/brunnermunzel
 BugReports: https://github.com/toshi-ara/brunnermunzel/issues/
-RoxygenNote: 7.0.2
+RoxygenNote: 7.2.1
 Suggests: testthat, knitr, rmarkdown, dplyr, ggplot2
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2020-01-07 13:07:10 UTC; ara
+Packaged: 2022-08-07 10:59:11 UTC; ara
 Author: Toshiaki Ara [aut, cre]
 Maintainer: Toshiaki Ara <toshiaki.ara@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-01-08 00:50:05 UTC
+Date/Publication: 2022-08-07 15:40:11 UTC
